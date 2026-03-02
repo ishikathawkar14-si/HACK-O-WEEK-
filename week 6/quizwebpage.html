@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Creative MCQ Quiz</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:'Poppins',sans-serif;
+  background: radial-gradient(circle at 30% 20%, #0f0c29, #090617 60%, #02010a);
+  color:white;
+  overflow:hidden;
+}
+
+/* Floating glowing particles */
+body::before, body::after{
+  content:"";
+  position:absolute;
+  width:350px;
+  height:350px;
+  border-radius:50%;
+  filter:blur(120px);
+  opacity:0.6;
+  animation: float 10s infinite alternate ease-in-out;
+}
+
+body::before{
+  background:#8b5cf6;
+  top:-120px;
+  left:-120px;
+}
+
+body::after{
+  background:#22d3ee;
+  bottom:-120px;
+  right:-120px;
+  animation-delay:3s;
+}
+
+@keyframes float{
+  from{ transform: translateY(0px); }
+  to{ transform: translateY(80px); }
+}
+
+.quiz-container{
+  width:450px;
+  padding:35px;
+  border-radius:28px;
+  backdrop-filter: blur(25px);
+  background: rgba(255,255,255,0.06);
+  box-shadow: 0 0 60px rgba(139,92,246,0.35);
+  animation: cardFloat 6s infinite ease-in-out;
+}
+
+@keyframes cardFloat{
+  0%,100%{ transform:translateY(0); }
+  50%{ transform:translateY(-14px); }
+}
+
+h1{
+  text-align:center;
+  font-family:'Orbitron',sans-serif;
+  margin-bottom:25px;
+  letter-spacing:2px;
+}
+
+.question{
+  margin-bottom:20px;
+}
+
+.question p{
+  margin-bottom:10px;
+  font-size:15px;
+}
+
+.option{
+  display:block;
+  padding:10px 14px;
+  border-radius:14px;
+  margin-bottom:8px;
+  background: rgba(255,255,255,0.05);
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.option:hover{
+  background: rgba(139,92,246,0.35);
+  box-shadow:0 0 14px rgba(139,92,246,0.7);
+}
+
+input{
+  margin-right:8px;
+}
+
+button{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:18px;
+  margin-top:15px;
+  font-size:16px;
+  font-weight:600;
+  background: linear-gradient(45deg,#8b5cf6,#22d3ee);
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 25px rgba(139,92,246,0.9);
+}
+
+#result{
+  text-align:center;
+  margin-top:15px;
+  font-size:18px;
+  font-weight:500;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+<h1>✨ Smart Quiz</h1>
+
+<div class="question">
+<p>1. Which is known as brain of computer?</p>
+<label class="option"><input type="radio" name="q1" value="1"> CPU</label>
+<label class="option"><input type="radio" name="q1" value="0"> Mouse</label>
+<label class="option"><input type="radio" name="q1" value="0"> Keyboard</label>
+</div>
+
+<div class="question">
+<p>2. Which language is mainly used for web styling?</p>
+<label class="option"><input type="radio" name="q2" value="0"> Python</label>
+<label class="option"><input type="radio" name="q2" value="1"> CSS</label>
+<label class="option"><input type="radio" name="q2" value="0"> Java</label>
+</div>
+
+<div class="question">
+<p>3. What does HTML stand for?</p>
+<label class="option"><input type="radio" name="q3" value="1"> Hyper Text Markup Language</label>
+<label class="option"><input type="radio" name="q3" value="0"> High Text Machine Language</label>
+<label class="option"><input type="radio" name="q3" value="0"> Hyper Transfer Mark Language</label>
+</div>
+
+<div class="question">
+<p>4. Which is an AI field?</p>
+<label class="option"><input type="radio" name="q4" value="1"> Machine Learning</label>
+<label class="option"><input type="radio" name="q4" value="0"> Civil Engineering</label>
+<label class="option"><input type="radio" name="q4" value="0"> Accounting</label>
+</div>
+
+<div class="question">
+<p>5. Which company develops Android?</p>
+<label class="option"><input type="radio" name="q5" value="1"> Google</label>
+<label class="option"><input type="radio" name="q5" value="0"> Apple</label>
+<label class="option"><input type="radio" name="q5" value="0"> Samsung</label>
+</div>
+
+<button onclick="checkScore()">Submit Quiz</button>
+<div id="result"></div>
+</div>
+
+<script>
+function checkScore(){
+  let score=0;
+  for(let i=1;i<=5;i++){
+    let ans=document.querySelector(`input[name=q${i}]:checked`);
+    if(ans) score+=Number(ans.value);
+  }
+  document.getElementById("result").innerText=`Your Score: ${score}/5`;
+}
+</script>
+
+</body>
+</html>
