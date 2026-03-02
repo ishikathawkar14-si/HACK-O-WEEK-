@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Floral Beach Travel Blog</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --sand: #f6efe7;
+      --ocean: #7ec8c9;
+      --deep-ocean: #4fa4a6;
+      --flower-pink: #f7c6d9;
+      --leaf: #a8d5ba;
+      --text-dark: #2f3e46;
+      --glass: rgba(255,255,255,0.35);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, var(--sand), #ffffff, #e8f6f6);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    /* Animated Ocean Waves */
+    body::after {
+      content: "";
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 200%;
+      height: 220px;
+      background: radial-gradient(circle at 50% 50%, rgba(126,200,201,0.3), transparent 60%);
+      animation: waveMove 18s linear infinite;
+      z-index: -2;
+    }
+
+    @keyframes waveMove {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Floating Floral Particles */
+    .flower {
+      position: fixed;
+      font-size: 18px;
+      animation: floatFlower linear infinite;
+      opacity: 0.6;
+      z-index: -1;
+    }
+
+    @keyframes floatFlower {
+      from { transform: translateY(110vh) rotate(0deg); }
+      to { transform: translateY(-10vh) rotate(360deg); }
+    }
+
+    header {
+      backdrop-filter: blur(12px);
+      background: var(--glass);
+      padding: 18px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.4);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: var(--deep-ocean);
+    }
+
+    nav a {
+      margin-left: 28px;
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 500;
+      position: relative;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--flower-pink), var(--ocean));
+      transition: 0.4s;
+    }
+
+    nav a:hover::after { width: 100%; }
+
+    /* Hero */
+    .hero {
+      padding: 110px 8% 90px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .hero-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 62px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, var(--deep-ocean), var(--flower-pink));
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: fadeUp 1.2s ease;
+    }
+
+    .hero-text p {
+      font-size: 18px;
+      line-height: 1.6;
+      opacity: 0.85;
+      animation: fadeUp 1.8s ease;
+    }
+
+    .hero-card {
+      border-radius: 30px;
+      padding: 30px;
+      backdrop-filter: blur(15px);
+      background: var(--glass);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Blog Section */
+    .blogs {
+      padding: 60px 8% 110px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 44px;
+      margin-bottom: 55px;
+      text-align: center;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 35px;
+    }
+
+    .blog-card {
+      border-radius: 26px;
+      overflow: hidden;
+      backdrop-filter: blur(14px);
+      background: var(--glass);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+      transition: 0.5s;
+      position: relative;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-12px) scale(1.03);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.12);
+    }
+
+    .blog-img {
+      height: 230px;
+      background-size: cover;
+      background-position: center;
+      transition: 0.6s;
+    }
+
+    .blog-card:hover .blog-img { transform: scale(1.08); }
+
+    .blog-content { padding: 22px; }
+
+    .blog-content h3 {
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 12px;
+    }
+
+    .blog-content p {
+      font-size: 15px;
+      line-height: 1.6;
+      opacity: 0.85;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 14px;
+      opacity: 0.7;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Flowers -->
+  <div class="flower" style="left:5%; animation-duration:14s;">🌸</div>
+  <div class="flower" style="left:25%; animation-duration:18s; font-size:22px;">🌺</div>
+  <div class="flower" style="left:55%; animation-duration:16s;">🌸</div>
+  <div class="flower" style="left:75%; animation-duration:20s; font-size:20px;">🌼</div>
+
+  <header>
+    <div class="logo">FloraTide</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#stories">Stories</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-text">
+      <h1>Floral Beach Escapes</h1>
+      <p>
+        A dreamy travel journal blending ocean breeze, tropical flowers, and peaceful coastal stories.
+        Discover hidden beaches, sunset diaries, and slow travel memories.
+      </p>
+    </div>
+
+    <div class="hero-card">
+      <h3>🌸 Beach Mood</h3>
+      <p>
+        Soft sand. Floral air. Ocean waves. This blog captures stories from peaceful tropical journeys
+        and aesthetic coastal adventures.
+      </p>
+    </div>
+  </section>
+
+  <section class="blogs" id="stories">
+    <h2 class="section-title">Trip Stories</h2>
+
+    <div class="blog-grid">
+
+      <div class="blog-card">
+        <div class="blog-img" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');"></div>
+        <div class="blog-content">
+          <h3>Maldives Morning Glow</h3>
+          <p>
+            Crystal water reflections, soft sunrise skies, and calm island mornings filled with ocean breeze and floral resort gardens.
+          </p>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-img" style="background-image:url('https://images.unsplash.com/photo-1493558103817-58b2924bce98');"></div>
+        <div class="blog-content">
+          <h3>Bali Floral Shores</h3>
+          <p>
+            Beach temples, flower offerings, and golden sunset waves made Bali feel like a living tropical painting.
+          </p>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-img" style="background-image:url('https://images.unsplash.com/photo-1500375592092-40eb2168fd21');"></div>
+        <div class="blog-content">
+          <h3>Goa Sunset Stories</h3>
+          <p>
+            Warm sand, beach shacks, music in the air, and glowing orange sunsets reflecting across Arabian Sea waves.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Floral Beach Travel Blog • Designed with ocean & floral vibes
+  </footer>
+
+</body>
+</html>
